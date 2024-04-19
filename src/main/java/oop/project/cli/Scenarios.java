@@ -1,8 +1,12 @@
 package oop.project.cli;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Scenarios {
 
@@ -33,28 +37,63 @@ public class Scenarios {
 
     /**
      * Takes two positional arguments:
-     *  - {@code left: <your integer type>}
-     *  - {@code right: <your integer type>}
+     *  - {@code left: Integer}
+     *  - {@code right: Integer}
      */
     private static Map<String, Object> add(String arguments) {
-        //TODO: Parse arguments and extract values.
-        int left = 0; //or BigInteger, etc.
-        int right = 0;
-        return Map.of("left", left, "right", right);
+        List<String> integers = List.of(arguments.split(" "));
+        if (integers.size() != 2)
+            throw new IllegalArgumentException("This command requires 2 arguments (valid integers).");
+        try {
+            int left = Integer.parseInt(integers.get(0));
+            int right = Integer.parseInt(integers.get(1));
+            return Map.of("left", left, "right", right);
+        } catch (Exception ex) {
+            throw new IllegalArgumentException("Arguments must be valid integers.");
+        }
     }
 
     /**
      * Takes two <em>named</em> arguments:
-     *  - {@code left: <your decimal type>} (optional)
-     *     - If your project supports default arguments, you could also parse
-     *       this as a non-optional decimal value using a default of 0.0.
-     *  - {@code right: <your decimal type>} (required)
+     *  - {@code left: Double} (required) (default = 0)
+     *  - {@code right: Double} (required)
      */
     static Map<String, Object> sub(String arguments) {
-        //TODO: Parse arguments and extract values.
         Optional<Double> left = Optional.empty();
-        double right = 0.0;
-        return Map.of("left", left, "right", right);
+        Double right = null;
+        boolean hasLeft = false;
+        boolean hasRight = false;
+
+        for (String arg : arguments.split(" ")) {
+            if (arg.equals("--left")) {
+                hasLeft = true;
+            } else if (arg.equals("--right")) {
+                hasRight = true;
+            } else if (hasLeft) {
+                try {
+                    left = Optional.of(Double.parseDouble(arg));
+                    hasLeft = false;
+                } catch (NumberFormatException ex) {
+                    throw new IllegalArgumentException("Invalid number provided for --left.");
+                }
+            } else if (hasRight) {
+                try {
+                    right = Double.parseDouble(arg);
+                    hasRight = false;
+                } catch (NumberFormatException ex) {
+                    throw new IllegalArgumentException("Invalid number provided for --right");
+                }
+            } else {
+                throw new IllegalArgumentException("Unexpected argument: " + arg);
+            }
+        }
+
+        if (right == null) {
+            throw new IllegalArgumentException("--right argument must be present and followed by a number.");
+        }
+
+        var leftReturn = left.isPresent() ? left.get() : Optional.empty();
+        return Map.of("left", leftReturn, "right", right);
     }
 
     /**

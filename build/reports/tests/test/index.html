@@ -20,13 +20,13 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">23</div>
+<div class="counter">7</div>
 <p>tests</p>
 </div>
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">22</div>
+<div class="counter">0</div>
 <p>failures</p>
 </div>
 </td>
@@ -38,7 +38,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.143s</div>
+<div class="counter">0.042s</div>
 <p>duration</p>
 </div>
 </td>
@@ -47,8 +47,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox failures" id="successRate">
-<div class="percent">4%</div>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
 <p>successful</p>
 </div>
 </td>
@@ -58,109 +58,13 @@
 <div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#tab0">Failed tests</a>
+<a href="#tab0">Packages</a>
 </li>
 <li>
-<a href="#tab1">Packages</a>
-</li>
-<li>
-<a href="#tab2">Classes</a>
+<a href="#tab1">Classes</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
-<h2>Failed tests</h2>
-<ul class="linkList">
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Add.html">Add</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Add.html#testAdd(String, String, Object)[1]">[1] Add, add 1 2, {right=2, left=1}</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Add.html">Add</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Add.html#testAdd(String, String, Object)[2]">[2] Missing Argument, add 1, null</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Add.html">Add</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Add.html#testAdd(String, String, Object)[3]">[3] Extraneous Argument, add 1 2 3, null</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Add.html">Add</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Add.html#testAdd(String, String, Object)[4]">[4] Not A Number, add one two, null</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Add.html">Add</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Add.html#testAdd(String, String, Object)[5]">[5] Not An Integer, add 1.0 2.0, null</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Calc.html">Calc</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Calc.html#testCalc(String, String, Object)[1]">[1] Add, calc add, {subcommand=add}</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Calc.html">Calc</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Calc.html#testCalc(String, String, Object)[2]">[2] Sub, calc sub, {subcommand=sub}</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Calc.html">Calc</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Calc.html#testCalc(String, String, Object)[3]">[3] Sqrt, calc sqrt, {subcommand=sqrt}</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Calc.html">Calc</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Calc.html#testCalc(String, String, Object)[4]">[4] Missing, calc, null</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Calc.html">Calc</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Calc.html#testCalc(String, String, Object)[5]">[5] Invalid, calc unknown, null</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Date.html">Date</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Date.html#testDate(String, String, Object)[1]">[1] Date, date 2024-01-01, {date=2024-01-01}</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Date.html">Date</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Date.html#testDate(String, String, Object)[2]">[2] Invalid, date 20240401, null</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Div.html">Div</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Div.html#testSub(String, String, Object)[1]">[1] Sub, sub --left 1.0 --right 2.0, {right=2.0, left=1.0}</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Div.html">Div</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Div.html#testSub(String, String, Object)[2]">[2] Left Only, sub --left 1.0, null</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Div.html">Div</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Div.html#testSub(String, String, Object)[3]">[3] Right Only, sub --right 2.0, {right=2.0, left=Optional.empty}</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Div.html">Div</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Div.html#testSub(String, String, Object)[4]">[4] Missing Value, sub --right, null</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Div.html">Div</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Div.html#testSub(String, String, Object)[5]">[5] Extraneous Argument, sub --right 2.0 extraneous, null</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Div.html">Div</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Div.html#testSub(String, String, Object)[6]">[6] Misspelled Flag, sub --write 2.0, null</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Div.html">Div</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Div.html#testSub(String, String, Object)[7]">[7] Not A Number, sub --right two, null</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Sqrt.html">Sqrt</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Sqrt.html#testSqrt(String, String, Object)[1]">[1] Valid, sqrt 4, {number=4}</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Sqrt.html">Sqrt</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Sqrt.html#testSqrt(String, String, Object)[2]">[2] Imperfect Square, sqrt 3, {number=3}</a>
-</li>
-<li>
-<a href="classes/oop.project.cli.ScenariosTests$Sqrt.html">Sqrt</a>.
-<a href="classes/oop.project.cli.ScenariosTests$Sqrt.html#testSqrt(String, String, Object)[4]">[4] Negative, sqrt -1, null</a>
-</li>
-</ul>
-</div>
-<div id="tab1" class="tab">
 <h2>Packages</h2>
 <table>
 <thead>
@@ -175,19 +79,19 @@
 </thead>
 <tbody>
 <tr>
-<td class="failures">
+<td class="success">
 <a href="packages/oop.project.cli.html">oop.project.cli</a>
 </td>
-<td>23</td>
-<td>22</td>
+<td>7</td>
 <td>0</td>
-<td>0.143s</td>
-<td class="failures">4%</td>
+<td>0</td>
+<td>0.042s</td>
+<td class="success">100%</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="tab2" class="tab">
+<div id="tab1" class="tab">
 <h2>Classes</h2>
 <table>
 <thead>
@@ -202,54 +106,14 @@
 </thead>
 <tbody>
 <tr>
-<td class="failures">
-<a href="classes/oop.project.cli.ScenariosTests$Add.html">oop.project.cli.ScenariosTests$Add</a>
-</td>
-<td>5</td>
-<td>5</td>
-<td>0</td>
-<td>0.045s</td>
-<td class="failures">0%</td>
-</tr>
-<tr>
-<td class="failures">
-<a href="classes/oop.project.cli.ScenariosTests$Calc.html">oop.project.cli.ScenariosTests$Calc</a>
-</td>
-<td>5</td>
-<td>5</td>
-<td>0</td>
-<td>0.021s</td>
-<td class="failures">0%</td>
-</tr>
-<tr>
-<td class="failures">
-<a href="classes/oop.project.cli.ScenariosTests$Date.html">oop.project.cli.ScenariosTests$Date</a>
-</td>
-<td>2</td>
-<td>2</td>
-<td>0</td>
-<td>0.040s</td>
-<td class="failures">0%</td>
-</tr>
-<tr>
-<td class="failures">
+<td class="success">
 <a href="classes/oop.project.cli.ScenariosTests$Div.html">oop.project.cli.ScenariosTests$Div</a>
 </td>
 <td>7</td>
-<td>7</td>
 <td>0</td>
-<td>0.030s</td>
-<td class="failures">0%</td>
-</tr>
-<tr>
-<td class="failures">
-<a href="classes/oop.project.cli.ScenariosTests$Sqrt.html">oop.project.cli.ScenariosTests$Sqrt</a>
-</td>
-<td>4</td>
-<td>3</td>
 <td>0</td>
-<td>0.007s</td>
-<td class="failures">25%</td>
+<td>0.042s</td>
+<td class="success">100%</td>
 </tr>
 </tbody>
 </table>
@@ -262,7 +126,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.5</a> at Apr 18, 2024, 9:34:39 PM</p>
+<a href="http://www.gradle.org">Gradle 8.5</a> at Apr 19, 2024, 1:36:51 AM</p>
 </div>
 </div>
 </body>
