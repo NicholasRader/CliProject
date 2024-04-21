@@ -1,12 +1,9 @@
 package oop.project.cli;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Scenarios {
 
@@ -103,6 +100,19 @@ public class Scenarios {
     static Map<String, Object> sqrt(String arguments) {
         //TODO: Parse arguments and extract values.
         int number = 0;
+
+        try {
+            number = Integer.parseInt(arguments.trim());
+        } catch(NumberFormatException e) {
+            System.out.println("Invalid integer provided for number.");
+        }
+
+        if(number < 0) {
+            throw new IllegalArgumentException("Invalid integer provided for square root method.");
+        }
+
+        System.out.println(number);
+
         return Map.of("number", number);
     }
 

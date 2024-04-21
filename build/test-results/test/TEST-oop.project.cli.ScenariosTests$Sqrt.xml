@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="oop.project.cli.ScenariosTests$Sqrt" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-04-21T20:57:33" hostname="DESKTOP-UJOPSBM" time="0.085">
+  <properties/>
+  <testcase name="[1] Valid, sqrt 4, {number=4}" classname="oop.project.cli.ScenariosTests$Sqrt" time="0.066"/>
+  <testcase name="[2] Imperfect Square, sqrt 3, {number=3}" classname="oop.project.cli.ScenariosTests$Sqrt" time="0.001"/>
+  <testcase name="[3] Zero, sqrt 0, {number=0}" classname="oop.project.cli.ScenariosTests$Sqrt" time="0.002"/>
+  <testcase name="[4] Negative, sqrt -1, null" classname="oop.project.cli.ScenariosTests$Sqrt" time="0.004"/>
+  <system-out><![CDATA[4
+3
+0
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
