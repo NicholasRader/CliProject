@@ -113,9 +113,17 @@ public class Scenarios {
      *       may want to take advantage of this scenario for that.
      */
     static Map<String, Object> calc(String arguments) {
-        //TODO: Parse arguments and extract values.
-        String subcommand = "";
-        return Map.of("subcommand", subcommand);
+        if(arguments.isEmpty()) {
+            throw new IllegalArgumentException("Missing argument");
+        } else if (arguments.equals("add")) {
+            return Map.of("subcommand", "add");
+        } else if (arguments.equals("sub")) {
+            return Map.of("subcommand", "sub");
+        } else if (arguments.equals("sqrt")) {
+            return Map.of("subcommand", "sqrt");
+        } else {
+            throw new IllegalArgumentException("Invalid Argument");
+        }
     }
 
     /**
