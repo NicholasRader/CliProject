@@ -127,7 +127,18 @@ public class Scenarios {
      */
     static Map<String, Object> date(String arguments) {
         //TODO: Parse arguments and extract values.
-        LocalDate date = LocalDate.EPOCH;
+        System.out.println(arguments);
+
+        String[] parts = arguments.split("-");
+
+        // Extract year, month, and day from the parts array
+        int year = Integer.parseInt(parts[0]);
+        int month = Integer.parseInt(parts[1]);
+        int day = Integer.parseInt(parts[2]);
+
+        // Create a LocalDate object using the extracted values
+        LocalDate date = LocalDate.of(year, month, day);
+
         return Map.of("date", date);
     }
 

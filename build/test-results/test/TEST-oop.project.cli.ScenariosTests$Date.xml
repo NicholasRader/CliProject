@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="oop.project.cli.ScenariosTests$Date" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-04-22T08:11:54" hostname="DESKTOP-AJ8JAJP" time="0.055">
+  <properties/>
+  <testcase name="[1] Date, date 2024-01-01, {date=2024-01-01}" classname="oop.project.cli.ScenariosTests$Date" time="0.044"/>
+  <testcase name="[2] Invalid, date 20240401, null" classname="oop.project.cli.ScenariosTests$Date" time="0.003"/>
+  <system-out><![CDATA[2024-01-01
+20240401
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
