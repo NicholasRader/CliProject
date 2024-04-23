@@ -1,12 +1,7 @@
 package oop.project.cli;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Scenarios {
 
@@ -86,8 +81,27 @@ public class Scenarios {
      */
     static Map<String, Object> sqrt(String arguments) {
         //TODO: Parse arguments and extract values.
-        int number = 0;
-        return Map.of("number", number);
+        int number;
+
+        ArgumentParser parser = new ArgumentParser();
+
+        parser.addPositionalArgument(0, "The operand", true, "0");
+
+        try {
+            parser.parseArguments(arguments.split(" "));
+
+            number = Integer.parseInt(parser.getPositionalArgumentValue(0));
+
+            if(number < 0) {
+                throw new IllegalArgumentException("Number parsed is negative and cannot have a real square root.");
+            }
+
+            return Map.of("number", number);
+        } catch (ArgumentParseException e) {
+            throw new IllegalArgumentException("Error parsing arguments: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Operand must be a number.");
+        }
     }
 
     /**
