@@ -97,8 +97,23 @@ public class Scenarios {
      *       may want to take advantage of this scenario for that.
      */
     static Map<String, Object> calc(String arguments) {
-        //TODO: Parse arguments and extract values.
         String subcommand = "";
+        try {
+            ArgumentParser argumentParser = new ArgumentParser();
+            argumentParser.addPositionalArgument(0, "The subcommand (required)", true, null);
+            argumentParser.parseArguments(arguments.split(" ", 1));
+            subcommand = argumentParser.getPositionalArgumentValue(0);
+            if(!subcommand.equals("add") && !subcommand.equals("sub") && !subcommand.equals("sqrt")) {
+                throw new IllegalArgumentException("Unsupported Command");
+            }
+            if(subcommand.isEmpty()) {
+                throw new IllegalArgumentException("Empty Command");
+            }
+        }
+        catch (ArgumentParseException e) {
+            throw new IllegalArgumentException("Error parsing");
+        }
+        System.out.println(subcommand);
         return Map.of("subcommand", subcommand);
     }
 
