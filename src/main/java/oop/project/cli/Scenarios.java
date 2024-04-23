@@ -110,20 +110,29 @@ public class Scenarios {
      *       out of the box and requires a custom type to be defined.
      */
     static Map<String, Object> date(String arguments) {
-        //TODO: Parse arguments and extract values.
-        System.out.println(arguments);
+        //Parse arguments and extract values.
 
-        String[] parts = arguments.split("-");
+        //initialize parser
+        ArgumentParser parser = new ArgumentParser();
 
-        // Extract year, month, and day from the parts array
-        int year = Integer.parseInt(parts[0]);
-        int month = Integer.parseInt(parts[1]);
-        int day = Integer.parseInt(parts[2]);
+        //consider parsing locations and their respective representations
+        parser.addPositionalArgument(0, "The Year in YYYY (required)", true, null);
+        parser.addPositionalArgument(1, "The Month in MM (required)", true, null);
+        parser.addPositionalArgument(2, "The Day in DD (required)", true, null);
 
-        // Create a LocalDate object using the extracted values
-        LocalDate date = LocalDate.of(year, month, day);
+        try {
+            parser.parseArguments(arguments.split("-"));  //parse based on - for dates
 
-        return Map.of("date", date);
+            int year = Integer.parseInt(parser.getPositionalArgumentValue(0));  //first positional was determined to be year
+            int month = Integer.parseInt(parser.getPositionalArgumentValue(1));
+            int day = Integer.parseInt(parser.getPositionalArgumentValue(2));
+
+            LocalDate date = LocalDate.of(year, month, day);   //create the date based off of parsed values
+            return Map.of("date", date);
+        } catch (ArgumentParseException e) {
+            throw new IllegalArgumentException("Error parsing arguments: " + e.getMessage());    // wuh oh, something went wrong :)
+        }
+
     }
 
     //TODO: Add your own scenarios based on your software design writeup. You
