@@ -1,12 +1,7 @@
 package oop.project.cli;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Scenarios {
 
@@ -59,7 +54,7 @@ public class Scenarios {
 
     /**
      * Takes two <em>named</em> arguments:
-     *  - {@code left: double} (required) (default = 0)
+     *  - {@code left: double} (optional) (default = 0)
      *  - {@code right: double} (required)
      */
     static Map<String, Object> sub(String arguments) {
@@ -86,8 +81,27 @@ public class Scenarios {
      */
     static Map<String, Object> sqrt(String arguments) {
         //TODO: Parse arguments and extract values.
-        int number = 0;
-        return Map.of("number", number);
+        int number;
+
+        ArgumentParser parser = new ArgumentParser();
+
+        parser.addPositionalArgument(0, "The operand", true, "0");
+
+        try {
+            parser.parseArguments(arguments.split(" "));
+
+            number = Integer.parseInt(parser.getPositionalArgumentValue(0));
+
+            if(number < 0) {
+                throw new IllegalArgumentException("Number parsed is negative and cannot have a real square root.");
+            }
+
+            return Map.of("number", number);
+        } catch (ArgumentParseException e) {
+            throw new IllegalArgumentException("Error parsing arguments: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Operand must be a number.");
+        }
     }
 
     /**
@@ -97,8 +111,23 @@ public class Scenarios {
      *       may want to take advantage of this scenario for that.
      */
     static Map<String, Object> calc(String arguments) {
-        //TODO: Parse arguments and extract values.
         String subcommand = "";
+        try {
+            ArgumentParser argumentParser = new ArgumentParser();
+            argumentParser.addPositionalArgument(0, "The subcommand (required)", true, null);
+            argumentParser.parseArguments(arguments.split(" ", 1));
+            subcommand = argumentParser.getPositionalArgumentValue(0);
+            if(!subcommand.equals("add") && !subcommand.equals("sub") && !subcommand.equals("sqrt")) {
+                throw new IllegalArgumentException("Unsupported Command");
+            }
+            if(subcommand.isEmpty()) {
+                throw new IllegalArgumentException("Empty Command");
+            }
+        }
+        catch (ArgumentParseException e) {
+            throw new IllegalArgumentException("Error parsing");
+        }
+        System.out.println(subcommand);
         return Map.of("subcommand", subcommand);
     }
 

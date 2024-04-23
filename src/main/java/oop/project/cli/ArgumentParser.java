@@ -35,7 +35,15 @@ public class ArgumentParser {
             this.value = value;
         }
 
-        // For positional
+        /**
+         * Constructs an Argument object for positional arguments
+         *
+         * @param index the index for the argument
+         * @param description description of the argument
+         * @param required whether the argument is required
+         * @param defaultValue value if one is not passed in
+         * @return the argument object
+         */
         public Argument(int index, String description, boolean required, String defaultValue) {
             this.flag = null;
             this.index = index;
@@ -44,7 +52,15 @@ public class ArgumentParser {
             this.value = defaultValue;
         }
 
-        // For named
+        /**
+         * Constructs an Argument object for named arguments
+         *
+         * @param flag the index for the argument
+         * @param description description of the argument
+         * @param required whether the argument is required
+         * @param defaultValue value if one is not passed in
+         * @return the argument object
+         */
         public Argument(String flag, String description, boolean required, String defaultValue) {
             this.flag = flag;
             this.index = -1;
@@ -67,13 +83,38 @@ public class ArgumentParser {
     private final List<String> parsedNamedArgs = new ArrayList<>();
     private final List<Integer> parsedIndexes = new ArrayList<>();
 
+    /**
+     * Constucts a positional argument object and stores it
+     *
+     * @param index the index for the argument
+     * @param description description of the argument
+     * @param required whether the argument is required
+     * @param defaultValue value if one is not passed in
+     */
     public void addPositionalArgument(int index, String description, boolean required, String defaultValue) {
         positionalArguments.put(index, new Argument(index, description, required, defaultValue));
     }
+
+    /**
+     * Constucts a named argument object and stores it
+     *
+     * @param flag the flag for the argument
+     * @param description description of the argument
+     * @param required whether the argument is required
+     * @param defaultValue value if one is not passed in
+     */
     public void addNamedArgument(String flag, String description, boolean required, String defaultValue) {
         namedArguments.put(flag, new Argument(flag, description, required, defaultValue));
     }
 
+    /**
+     * Parses command-line arguments provided as an array of strings.
+     * This method iterates through each argument in the provided array and processes them accordingly.
+     * It distinguishes between named arguments (flags) prefixed with "--" and positional arguments.
+     *
+     * @param args The array of command-line arguments to parse.
+     * @throws ArgumentParseException If there is an error parsing the arguments.
+     */
     public void parseArguments(String[] args) throws ArgumentParseException {
         int i = 0;
 
@@ -124,9 +165,26 @@ public class ArgumentParser {
         }
     }
 
+    /**
+     * Retrieves the value associated with the specified named argument flag.
+     * This method retrieves the value associated with the specified named argument
+     * flag from the parsed arguments.
+     *
+     * @param flag The flag of the named argument whose value is to be retrieved.
+     * @return The value associated with the specified named argument flag.
+     */
     public String getNamedArgumentValue(String flag) {
         return namedArguments.get(flag).getValue();
     }
+
+    /**
+     * Retrieves the value associated with the positional argument at the specified index.
+     * This method retrieves the value associated with the positional argument at the specified
+     * index from the parsed arguments.
+     *
+     * @param index The index of the positional argument whose value is to be retrieved.
+     * @return The value associated with the positional argument at the specified index.
+     */
     public String getPositionalArgumentValue(int index) {
         return positionalArguments.get(index).getValue();
     }
