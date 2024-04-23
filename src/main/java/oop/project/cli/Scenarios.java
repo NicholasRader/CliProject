@@ -54,7 +54,7 @@ public class Scenarios {
 
     /**
      * Takes two <em>named</em> arguments:
-     *  - {@code left: double} (required) (default = 0)
+     *  - {@code left: double} (optional) (default = 0)
      *  - {@code right: double} (required)
      */
     static Map<String, Object> sub(String arguments) {
