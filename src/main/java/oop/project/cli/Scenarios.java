@@ -37,63 +37,47 @@ public class Scenarios {
 
     /**
      * Takes two positional arguments:
-     *  - {@code left: Integer}
-     *  - {@code right: Integer}
+     *  - {@code left: integer}
+     *  - {@code right: integer}
      */
     private static Map<String, Object> add(String arguments) {
-        List<String> integers = List.of(arguments.split(" "));
-        if (integers.size() != 2)
-            throw new IllegalArgumentException("This command requires 2 arguments (valid integers).");
+        ArgumentParser argumentParser = new ArgumentParser();
+        argumentParser.addPositionalArgument(0, "The left operand (required)", true, null);
+        argumentParser.addPositionalArgument(1, "The right operand (required)", true, null);
+
         try {
-            int left = Integer.parseInt(integers.get(0));
-            int right = Integer.parseInt(integers.get(1));
+            argumentParser.parseArguments(arguments.split(" "));
+            int left = Integer.parseInt(argumentParser.getPositionalArgumentValue(0));
+            int right = Integer.parseInt(argumentParser.getPositionalArgumentValue(1));
             return Map.of("left", left, "right", right);
-        } catch (Exception ex) {
-            throw new IllegalArgumentException("Arguments must be valid integers.");
+        } catch (ArgumentParseException e) {
+            throw new IllegalArgumentException("Error parsing arguments: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Operands must be integers.");
         }
     }
 
     /**
      * Takes two <em>named</em> arguments:
-     *  - {@code left: Double} (required) (default = 0)
-     *  - {@code right: Double} (required)
+     *  - {@code left: double} (required) (default = 0)
+     *  - {@code right: double} (required)
      */
     static Map<String, Object> sub(String arguments) {
-        Optional<Double> left = Optional.empty();
-        Double right = null;
-        boolean hasLeft = false;
-        boolean hasRight = false;
+        ArgumentParser parser = new ArgumentParser();
 
-        for (String arg : arguments.split(" ")) {
-            if (arg.equals("--left")) {
-                hasLeft = true;
-            } else if (arg.equals("--right")) {
-                hasRight = true;
-            } else if (hasLeft) {
-                try {
-                    left = Optional.of(Double.parseDouble(arg));
-                    hasLeft = false;
-                } catch (NumberFormatException ex) {
-                    throw new IllegalArgumentException("Invalid number provided for --left.");
-                }
-            } else if (hasRight) {
-                try {
-                    right = Double.parseDouble(arg);
-                    hasRight = false;
-                } catch (NumberFormatException ex) {
-                    throw new IllegalArgumentException("Invalid number provided for --right");
-                }
-            } else {
-                throw new IllegalArgumentException("Unexpected argument: " + arg);
-            }
+        parser.addNamedArgument("left", "The left operand (optional)", false, "0");
+        parser.addNamedArgument("right", "The right operand (required)", true, null);
+
+        try {
+            parser.parseArguments(arguments.split(" "));
+            double left = Double.parseDouble(parser.getNamedArgumentValue("left"));
+            double right = Double.parseDouble(parser.getNamedArgumentValue("right"));
+            return Map.of("left", left, "right", right);
+        } catch (ArgumentParseException e) {
+            throw new IllegalArgumentException("Error parsing arguments: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Operands must be numbers.");
         }
-
-        if (right == null) {
-            throw new IllegalArgumentException("--right argument must be present and followed by a number.");
-        }
-
-        var leftReturn = left.isPresent() ? left.get() : Optional.empty();
-        return Map.of("left", leftReturn, "right", right);
     }
 
     /**
@@ -127,7 +111,18 @@ public class Scenarios {
      */
     static Map<String, Object> date(String arguments) {
         //TODO: Parse arguments and extract values.
-        LocalDate date = LocalDate.EPOCH;
+        System.out.println(arguments);
+
+        String[] parts = arguments.split("-");
+
+        // Extract year, month, and day from the parts array
+        int year = Integer.parseInt(parts[0]);
+        int month = Integer.parseInt(parts[1]);
+        int day = Integer.parseInt(parts[2]);
+
+        // Create a LocalDate object using the extracted values
+        LocalDate date = LocalDate.of(year, month, day);
+
         return Map.of("date", date);
     }
 
