@@ -35,7 +35,15 @@ public class ArgumentParser {
             this.value = value;
         }
 
-        // For positional
+        /**
+         * Constructs an Argument object for positional arguments
+         *
+         * @param index the index for the argument
+         * @param description description of the argument
+         * @param required whether the argument is required
+         * @param defaultValue value if one is not passed in
+         * @return the argument object
+         */
         public Argument(int index, String description, boolean required, String defaultValue) {
             this.flag = null;
             this.index = index;
@@ -44,7 +52,15 @@ public class ArgumentParser {
             this.value = defaultValue;
         }
 
-        // For named
+        /**
+         * Constructs an Argument object for named arguments
+         *
+         * @param flag the index for the argument
+         * @param description description of the argument
+         * @param required whether the argument is required
+         * @param defaultValue value if one is not passed in
+         * @return the argument object
+         */
         public Argument(String flag, String description, boolean required, String defaultValue) {
             this.flag = flag;
             this.index = -1;
@@ -67,9 +83,26 @@ public class ArgumentParser {
     private final List<String> parsedNamedArgs = new ArrayList<>();
     private final List<Integer> parsedIndexes = new ArrayList<>();
 
+    /**
+     * Constucts a positional argument object and stores it
+     *
+     * @param index the index for the argument
+     * @param description description of the argument
+     * @param required whether the argument is required
+     * @param defaultValue value if one is not passed in
+     */
     public void addPositionalArgument(int index, String description, boolean required, String defaultValue) {
         positionalArguments.put(index, new Argument(index, description, required, defaultValue));
     }
+
+    /**
+     * Constucts a named argument object and stores it
+     *
+     * @param flag the flag for the argument
+     * @param description description of the argument
+     * @param required whether the argument is required
+     * @param defaultValue value if one is not passed in
+     */
     public void addNamedArgument(String flag, String description, boolean required, String defaultValue) {
         namedArguments.put(flag, new Argument(flag, description, required, defaultValue));
     }
