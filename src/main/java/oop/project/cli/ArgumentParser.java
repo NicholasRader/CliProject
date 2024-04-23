@@ -107,6 +107,14 @@ public class ArgumentParser {
         namedArguments.put(flag, new Argument(flag, description, required, defaultValue));
     }
 
+    /**
+     * Parses command-line arguments provided as an array of strings.
+     * This method iterates through each argument in the provided array and processes them accordingly.
+     * It distinguishes between named arguments (flags) prefixed with "--" and positional arguments.
+     *
+     * @param args The array of command-line arguments to parse.
+     * @throws ArgumentParseException If there is an error parsing the arguments.
+     */
     public void parseArguments(String[] args) throws ArgumentParseException {
         int i = 0;
 
@@ -157,9 +165,26 @@ public class ArgumentParser {
         }
     }
 
+    /**
+     * Retrieves the value associated with the specified named argument flag.
+     * This method retrieves the value associated with the specified named argument
+     * flag from the parsed arguments.
+     *
+     * @param flag The flag of the named argument whose value is to be retrieved.
+     * @return The value associated with the specified named argument flag.
+     */
     public String getNamedArgumentValue(String flag) {
         return namedArguments.get(flag).getValue();
     }
+
+    /**
+     * Retrieves the value associated with the positional argument at the specified index.
+     * This method retrieves the value associated with the positional argument at the specified
+     * index from the parsed arguments.
+     *
+     * @param index The index of the positional argument whose value is to be retrieved.
+     * @return The value associated with the positional argument at the specified index.
+     */
     public String getPositionalArgumentValue(int index) {
         return positionalArguments.get(index).getValue();
     }
