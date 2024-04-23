@@ -76,8 +76,8 @@ public class ArgumentParser {
 
     /**
      * Parses command-line arguments provided as an array of strings.
-     * <p> This method iterates through each argument in the provided array and processes them accordingly.
-     * It distinguishes between named arguments (flags) prefixed with "--" and positional arguments.</p>
+     * This method iterates through each argument in the provided array and processes them accordingly.
+     * It distinguishes between named arguments (flags) prefixed with "--" and positional arguments.
      *
      * @param args The array of command-line arguments to parse.
      * @throws ArgumentParseException If there is an error parsing the arguments.
